@@ -31,8 +31,9 @@ CREATE TABLE 'Pelis_Pendientes'(
  FOREIGN KEY ('usuario') REFERENCES 'usuarios'('id')
 );
 
-INSERT INTO usuarios (nombre, email) VALUES ('Pepe', 'Epep@gmail.com'),
-('Alberto', 'kokointo@gmail.com');
+INSERT INTO usuarios (nombre, email, favPeli) VALUES ('Pepe', 'Epep@gmail.com', 1),
+('Alberto', 'kokointo@gmail.com', 5),
+('Kiko', 'MegustanLosKikos@gmail.com', 3);
 
 INSERT INTO peliculas (titulo, genero, año, director) VALUES ('Django', 'western', 2012, 'Quentin Tarantino'),
 ('Interstellar', 'Drama', 2014, 'Christopher Nolan'),
@@ -44,6 +45,11 @@ INSERT INTO peliculas (titulo, genero, año, director) VALUES ('Django', 'wester
 ('Spider-Man', 'Ciencia Ficcion', 2002, 'Sam Raimi'),
 ('Iron Man', 'SuperHeroes', 2008, 'Jon Favreau'),
 ('El viaje de Chihiro', 'fantasia', 2001, 'Hayao Miyazaki');
+
+INSERT INTO Pelis_Pendientes (usuario, pelicula_No_Vista) VALUES (2,7),
+(2,6),
+(3,4),
+(3,10);
 
 SELECT usuarios.nombre, peliculas.titulo AS peliculasFavoritas
 FROM usuarios
