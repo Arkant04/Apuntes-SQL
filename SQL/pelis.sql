@@ -22,6 +22,14 @@ CREATE TABLE 'peliculas'(
  PRIMARY KEY ('id' AUTOINCREMENT)
 );--STRICT;
 
+CREATE TABLE 'Pelis_Pendientes'(
+    'id' INTEGER NOT NULL,
+    'pelicula_No_Vista' INTEGER NOT NULL,
+    'usuario' INTEGER NOT NULL,
+ PRIMARY KEY ('id' AUTOINCREMENT)
+ FOREIGN KEY ('pelicula_No_Vista') REFERENCES 'peliculas'('id')     
+ FOREIGN KEY ('usuario') REFERENCES 'usuarios'('id')
+);
 
 INSERT INTO usuarios (nombre, email) VALUES ('Pepe', 'Epep@gmail.com'),
 ('Alberto', 'kokointo@gmail.com');
