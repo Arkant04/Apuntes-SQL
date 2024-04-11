@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS Pelis_Pendientes;
 DROP TABLE IF EXISTS peliculas;
 DROP TABLE IF EXISTS usuarios;
 PRAGMA foreign_keys = on;
@@ -8,14 +9,14 @@ CREATE TABLE 'usuarios'(
   'email' TEXT NOT NULL UNIQUE,
   'favPeli' INTEGER,
   PRIMARY KEY ('id' AUTOINCREMENT)
-  FOREIGN KEY ('favPeli') REFERENCES 'peliculas'('id')
+  FOREIGN KEY (favPeli) REFERENCES peliculas(id)
 );--STRICT;
 
 CREATE TABLE 'peliculas'(
     'titulo' TEXT NOT NULL,
     'id' INTEGER NOT NULL,
     'genero' TEXT,
-    'año' INTEGER NOT NULL,
+    'año' INTEGER,
     'director' TEXT NOT NULL,
     --'autor' TEXT NOT NULL,
     --FOREIGN KEY ('autor') REFERENCES 'usuarios' ('id'),
@@ -31,11 +32,12 @@ CREATE TABLE 'Pelis_Pendientes'(
  FOREIGN KEY ('usuario') REFERENCES 'usuarios'('id')
 );
 
-INSERT INTO usuarios (nombre, email, favPeli) VALUES ('Pepe', 'Epep@gmail.com', 1),
-('Alberto', 'kokointo@gmail.com', 5),
-('Kiko', 'MegustanLosKikos@gmail.com', 3);
+INSERT INTO 'usuarios' (nombre, email) VALUES 
+('Pepe', 'Epep@gmail.com'),
+('Alberto', 'kokointo@gmail.com'),
+('Kiko', 'MegustanLosKikos@gmail.com');
 
-INSERT INTO peliculas (titulo, genero, año, director) VALUES ('Django', 'western', 2012, 'Quentin Tarantino'),
+INSERT INTO 'peliculas' (titulo, genero, año, director) VALUES ('Django', 'western', 2012, 'Quentin Tarantino'),
 ('Interstellar', 'Drama', 2014, 'Christopher Nolan'),
 ('El corral, una fiesta muy bestia', 'comedia', 2006, 'Steve Oedekerk'),
 ('El gato con botas: Los tres diablos', 'animacion', 2012, 'Raman Hui'),
@@ -46,7 +48,8 @@ INSERT INTO peliculas (titulo, genero, año, director) VALUES ('Django', 'wester
 ('Iron Man', 'SuperHeroes', 2008, 'Jon Favreau'),
 ('El viaje de Chihiro', 'fantasia', 2001, 'Hayao Miyazaki');
 
-INSERT INTO Pelis_Pendientes (usuario, pelicula_No_Vista) VALUES (2,7),
+INSERT INTO 'Pelis_Pendientes' (usuario, pelicula_No_Vista) VALUES 
+(2,7),
 (2,6),
 (3,4),
 (3,10);
@@ -54,4 +57,4 @@ INSERT INTO Pelis_Pendientes (usuario, pelicula_No_Vista) VALUES (2,7),
 SELECT usuarios.nombre, peliculas.titulo AS peliculasFavoritas
 FROM usuarios
 JOIN peliculas ON usuarios.favPeli = peliculas.id
-JOIN peliculas on Pelis_Pendientes.pelicula_No_Vista = peliculas.id
+--JOIN peliculas on Pelis_Pendientes.pelicula_No_Vista = peliculas.id
