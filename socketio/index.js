@@ -11,9 +11,18 @@ app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
+app.get('/paint', (req, res) => {
+  res.sendFile(join(__dirname, 'paint.html'))
+});
+
 io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       io.emit('chat message', msg);
+    }),
+    socket.on('paint', (datos) =>{
+      console.log("La x es:", datos.x)
+      console.log("La y es:", datos.y)
+     io.emit('paint', datos);
     });
   });
   

@@ -29,6 +29,7 @@
   const input = document.getElementById('input');
   const messages = document.getElementById('messages');
 
+  // este evento manda el evento de socket 'chat message' al backend
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (input.value) {
@@ -36,6 +37,9 @@
       input.value = '';
     }
   });
+
+
+  //este evento se dispara cuando el backend me con 'chat message'
   socket.on('chat message', (msg) => {
     const item = document.createElement('li');
     item.textContent = msg;

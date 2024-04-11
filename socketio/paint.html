@@ -3,13 +3,35 @@
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.1/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
 
   </head>
   <body>
     <main>
     </main>
-    <script src="paint.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+  const socket = io();
+      function setup() {
+    createCanvas(1900, 1080);
+    background(0,225, 0);
+  }
+  
+  function draw() {
+    fill(0, 0, 225)
+    if(mouseIsPressed){
+      const datos ={
+        x: mouseX,
+        y: mouseY
+      }
+      socket.emit('paint', datos);
+     //ellipse(mouseX, mouseY, 50, 50)
+          
+    }
+  }
+  socket.on('paint', (datos) => {
+    ellipse(datos.x, datos.y, 20)
+  });
+    </script>
   </body>
 </html>
