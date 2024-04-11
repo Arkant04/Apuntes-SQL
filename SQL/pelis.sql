@@ -56,5 +56,5 @@ INSERT INTO 'Pelis_Pendientes' (usuario, pelicula_No_Vista) VALUES
 
 SELECT usuarios.nombre, peliculas.titulo AS peliculasFavoritas
 FROM usuarios
-JOIN peliculas ON usuarios.favPeli = peliculas.id
+JOIN peliculas ON usuarios.favPeli = peliculas.id;
 --JOIN peliculas on Pelis_Pendientes.pelicula_No_Vista = peliculas.id
